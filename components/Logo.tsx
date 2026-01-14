@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 interface LogoProps {
@@ -18,19 +19,26 @@ const Logo: React.FC<LogoProps> = ({ className = '', size = 'md' }) => {
         <svg 
           viewBox="0 0 320 120" 
           xmlns="http://www.w3.org/2000/svg" 
-          className="h-full w-full"
+          className="h-full w-full drop-shadow-lg"
           preserveAspectRatio="xMidYMid meet"
         >
           <defs>
-            <linearGradient id="arcGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#FFB347" />
-              <stop offset="100%" stopColor="#E65100" />
+            <linearGradient id="brandGold" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#fbbf24" />
+              <stop offset="50%" stopColor="#fff7ed" />
+              <stop offset="100%" stopColor="#d97706" />
             </linearGradient>
-            <filter id="textGlow" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur in="SourceAlpha" stdDeviation="1" />
-              <feOffset dx="0" dy="1" result="offsetblur" />
+            
+            <linearGradient id="arcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#10b981" />
+              <stop offset="100%" stopColor="#3b82f6" />
+            </linearGradient>
+
+            <filter id="premiumGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur in="SourceAlpha" stdDeviation="2" />
+              <feOffset dx="0" dy="0" result="offsetblur" />
               <feComponentTransfer>
-                <feFuncA type="linear" slope="0.3" />
+                <feFuncA type="linear" slope="0.5" />
               </feComponentTransfer>
               <feMerge>
                 <feMergeNode />
@@ -39,29 +47,31 @@ const Logo: React.FC<LogoProps> = ({ className = '', size = 'md' }) => {
             </filter>
           </defs>
 
-          {/* Top Arc */}
+          {/* Animated Top Arc */}
           <path 
             d="M90 35 Q160 5 230 35" 
-            stroke="url(#arcGradient)" 
-            strokeWidth="10" 
+            stroke="url(#arcGrad)" 
+            strokeWidth="8" 
             fill="none" 
             strokeLinecap="round"
-            className="group-hover:opacity-80 transition-opacity duration-300"
-          />
+            className="group-hover:stroke-white transition-all duration-500"
+          >
+             <animate attributeName="stroke-dasharray" from="0, 500" to="500, 0" dur="2s" fill="freeze" />
+          </path>
 
           {/* SR DIGITAL Main Text */}
           <text 
             x="160" 
             y="85" 
             textAnchor="middle" 
-            fill="#1D4477" 
+            fill="white" 
             style={{ 
               fontFamily: "'Inter', sans-serif", 
               fontWeight: 900, 
               fontSize: '48px',
-              letterSpacing: '-1px'
+              letterSpacing: '-1.5px'
             }}
-            filter="url(#textGlow)"
+            filter="url(#premiumGlow)"
           >
             SR DIGITAL
           </text>
@@ -71,17 +81,16 @@ const Logo: React.FC<LogoProps> = ({ className = '', size = 'md' }) => {
             x="160" 
             y="110" 
             textAnchor="middle" 
-            fill="#7F8C8D" 
+            fill="#94a3b8" 
             style={{ 
               fontFamily: "'Inter', sans-serif", 
-              fontWeight: 600, 
-              fontSize: '12px',
-              letterSpacing: '5px',
-              fontStyle: 'italic',
+              fontWeight: 700, 
+              fontSize: '11px',
+              letterSpacing: '6px',
               textTransform: 'uppercase'
             }}
           >
-            DIGITAL MARKETING AGENCY
+            Real Estate Conversion Experts
           </text>
         </svg>
       </div>
