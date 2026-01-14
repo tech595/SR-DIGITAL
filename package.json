@@ -8,8 +8,5 @@
     "react-dom": "^19.0.0",
     "@google/genai": "^1.35.0"
   },
-  "overrides": {
-    "node-domexception": "$DOMException"
-  },
   "description": "Premium Real Estate Lead Generation Landing Page"
 }
